@@ -1,4 +1,4 @@
-# Word Guess Game
+# Adivina la palabra
 
 ### [Link to App](http://matthewemichael.github.io/word-guess-game/index.html)
 

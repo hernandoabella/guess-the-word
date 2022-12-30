@@ -1,32 +1,84 @@
-const possibleWords = [
-  "MENTE", 
-  "ALMA", 
-  "POSITIVO", 
-  // "CORAZON",
-  // "ESPIRITU", 
-  // "ENERGIA", 
-  // "PROSPERIDAD", 
-  // "DRAGON", 
-  // "AGUILA"
+var possibleWords = [
+  "GRAND CANYON", 
+  "ROCKY MOUNTAIN", 
+  "ZION", 
+  // "YELLOWSTONE",
+  // "YOSEMITE", 
+  // "GRAND TETON", 
+  // "GLACIER", 
+  // "ACADIA", 
+  // "MAMMOTH CAVE", 
+  // "OLYMPIC", 
+  // "GREAT SMOKY MOUNTAINS",
+  // "ARCHES",
+  // "BRYCE CANYON",
+  // "CARLSBAD CAVERNS",
+  // "CRATER LAKE",
+  // "DEATH VALLEY",
+  // "DENALI",
+  // "JOSHUA TREE",
+  // "CAPITOL REEF",
+  // "CANYON LANDS",
+  // "BADLANDS",
+  // "BIG BEND",
+  // "SEQUOIA",
+  // "BISCAYNE",
+  // "SHENANDOAH",
+  // "HOT SPRINGS",
+  // "MOUNT RANIER",
+  // "SAGUARO",
+  // "KINGS CANYON",
+  // "EVERGLADES",
+  // "MESA VERDE",
+  // "REDWOOD",
+  // "CHANNEL ISLANDS",
+  // "BLACK CANYON OF THE GUNNISON",
+  // "CONGAREE",
+  // "CUYAHOGA VALLEY",
+  // "DRY TORTUGAS",
+  // "GATEWAY ARCH",
+  // "GATES OF THE ARCTIC",
+  // "AMERICAN SAMOA",
+  // "GLACIER BAY",
+  // "GREAT BASIN",
+  // "GUADALUPE MOUNTAINS",
+  // "HAWAII VOLCANOES",
+  // "HOT SPRINGS",
+  // "INDIANA DUNES",
+  // "KATMAI",
+  // "KENAI FJORDS",
+  // "LASSEN VOLCANIC",
+  // "NORTH CASCADES",
+  // "PETRIFIED FOREST",
+  // "PINNACLES",
+  // "THEODORE ROOSEVELT",
+  // "VIRGIN ISLANDS",
+  // "VOYAGEURS",
+  // "WRANGELL ST ELIAS",
+  // "WIND CAVE",
+  // "KOBUK VALLEY",
+  // "LAKE CLARK",
+  // "ISLE ROYALE",
+  // "HALEAKALA"
 ];
 
-const guessedLetters = [];
-const guessingWord = [];
-const usedGuessingwWords = [];
-let wordToMatch;
-let numGuess;
-let wins = 0;
-let pause = false; // Esta función var y setTimout es para no escuchar la pulsación de teclas mientras se reinicia el juego
-let loseSound = new Audio("./assets/sounds/ahahah.mp3");
-let winSound = new Audio("./assets/sounds/clever.wav");
-let championSound = new Audio("./assets/sounds/crazysob.mp3");
+var guessedLetters = [];
+var guessingWord = [];
+var usedGuessingwWords = [];
+var wordToMatch;
+var numGuess;
+var wins = 0;
+var pause = false; // This var and setTimout function to not listen for keypress while game resets
+var loseSound = new Audio("./assets/sounds/ahahah.mp3");
+var winSound = new Audio("./assets/sounds/clever.wav");
+var championSound = new Audio("./assets/sounds/crazysob.mp3");
 
-// Inicia el juego
-function initializeGame() {
+// Iniciar juego
+function iniciarJuego() {
 
-  // Obtener una nueva palabra
+  // Get a new word
   wordToMatch = possibleWords[Math.floor(Math.random() * possibleWords.length)].toUpperCase();
-  // Establezca el número de aciertos (mayor o menor) según la longitud de la palabra
+  // Set number of guesses (higher or lower) based on word length
   if (wordToMatch.length <= 4) {
     numGuess = 4
   } else if (wordToMatch.length >4 && wordToMatch.length <= 7) {
@@ -39,9 +91,9 @@ function initializeGame() {
     numGuess = 7;
   }
 
-  // Obtener guiones bajos para guessingWord desde wordToMatch
+  // Get underscores for guessingWord from wordToMatch
   for (var i=0; i < wordToMatch.length; i++){
-    // Coloque un espacio en lugar de un guión bajo entre las opciones de varias palabras en el arreglo de palabras posibles
+    // Put a space instead of an underscore between multi-word options in possibleWords array
     if (wordToMatch[i] === " ") {
       guessingWord.push(" ")
     } 
@@ -49,50 +101,50 @@ function initializeGame() {
       guessingWord.push("_");
     }
   }
-  
   updateDisplay();
 };
 
-// Reiniciar el juego
+//Reset the game
 function resetGame() {
   if (usedGuessingwWords.length === possibleWords.length) {
-    championSound.play() // Activa el comentario de línea para casi todo el arreglo de palabras posibles para escuchar este clip de sonido al final del juego
+    championSound.play() // Toggle line comment on for almost the entire possibleWords array to hear this end of game sound clip
     usedGuessingwWords = []
     wins = 0
-    setTimeout(resetGame, 6000); // Nota para cambios futuros: acorte las palabras posibles, haga que jumbotron muestre un mensaje de felicitación al adivinar todas las posibilidades
-  }else {
+    setTimeout(resetGame, 6000); // Note for future change - shorten possibleWords, make jumbotron display congratulatory message upon guessing all possibilites
+  }
+  else {
     pause = false;
-    // Restaura el mensaje parpadeante "... empezar"
+    // Restores blinking "...get started" message
     document.getElementById('welcome').className = 'blink';
     
-    // Obtener una nueva palabra
+    // Get a new word
     wordToMatch = possibleWords[Math.floor(Math.random() * possibleWords.length)].toUpperCase();
     console.log(wordToMatch)
-    // Si una nueva palabra ya ha sido usada aleatoriamente selecciona otra
+    // If new word has already been used randomly select another
     if (usedGuessingwWords.includes(wordToMatch) === true) {
       resetGame();
     }
     
-    // Establezca el número de aciertos (mayor o menor) según la longitud de la palabra
+    // Set number of guesses (higher or lower) based on word length
     if (wordToMatch.length <= 4) {
       numGuess = 4
-    } else if (wordToMatch.length > 4 && wordToMatch.length <= 7) {
+    } else if (wordToMatch.length >4 && wordToMatch.length <= 7) {
       numGuess = Math.floor(wordToMatch.length * .67)
-    } else if (wordToMatch.length > 7 && wordToMatch.length <= 10) {
+    } else if (wordToMatch.length >7 && wordToMatch.length <= 10) {
       numGuess = Math.floor(wordToMatch.length * .5)
-    } else if (wordToMatch.length > 10 && wordToMatch.length <= 14) {
+    } else if (wordToMatch.length >10 && wordToMatch.length <= 14) {
       numGuess = Math.floor(wordToMatch.length * .52)
-    } else if (wordToMatch.length > 14) {
+    } else if (wordToMatch.length >14) {
       numGuess = 7;
     }
 
-    // Reinicia los arreglos de las palabras
+    // Reset word arrays
     guessedLetters = [];
     guessingWord = [];
 
-    // Reinicia la palabra adivinada
+    // Reset the guessed word
     for (var i=0; i < wordToMatch.length; i++){
-      // Coloque un espacio en lugar de un guión bajo entre las opciones de varias palabras en el arreglo de palabras posibles
+      // Put a space instead of an underscore between multi-word options in possibleWords array
       if (wordToMatch[i] === " ") {
         guessingWord.push(" ")
       } 
@@ -104,7 +156,7 @@ function resetGame() {
   }
 };
 
-// Actualizar la pantalla
+// Update the Display
 function updateDisplay () {
   document.getElementById("totalWins").innerText = wins;
   document.getElementById("currentWord").innerText = guessingWord.join("");
@@ -112,37 +164,36 @@ function updateDisplay () {
   document.getElementById("guessedLetters").innerText =  guessedLetters.join(" ");
 };
 
-// Espere a que se presione la tecla
+// Wait for key press
 document.onkeydown = function(event) {
-  // Asegúrese de que la tecla presionada sea un carácter alfabético
+  // Make sure key pressed is an alpha character
   if (isLetter(event.key) && pause === false) {
   checkForLetter(event.key.toUpperCase());
   }
-  // Apaga el mensaje parpadeante "... empezar" al presionar una tecla
+  // Turn off blinking "...get started" message on keypress
   document.getElementById('welcome').className = 'noBlink';
 };
 
-// Comprueba si la letra presionada está entre A-Z o a-z
-let isLetter = function(ch){
+// Check if key pressed is between A-Z or a-z
+var isLetter = function(ch){
   return typeof ch === "string" && ch.length === 1
   && (ch >= "a" && ch <= "z" || ch >= "A" && ch <= "Z");
 };
 
-// Comprueba si la letra está en una palabra
+// Check if letter is in word
 function checkForLetter(letter) {
-  let foundLetter = false;
+  var foundLetter = false;
 
-  // Busca un string por letra 
+  // Search string for letter
   for (var i=0; i < wordToMatch.length; i++) {
-
     if (letter === wordToMatch[i]) {
       guessingWord[i] = letter
       foundLetter = true
-      // Si la palabra que adivinaste coincide con una palabra aleatoria
+      // If guessing word matches random word
       if (guessingWord.join("") === wordToMatch) {
-        // Incrementar el número de victorias y agregar palabras a usedGuessingWords.
+        // Increment # of wins and add word to usedGuessingWords
         wins++
-        // Agregar palabra al arreglo usedGuessingWords para que no se repita
+        // Add word to usedGuessingWords array to not be repeated
         usedGuessingwWords.push(wordToMatch)
         console.log(usedGuessingwWords)
         pause = true;
@@ -151,32 +202,27 @@ function checkForLetter(letter) {
         setTimeout(resetGame, 4000);
       }
     }
-
   }
-
   if (foundLetter === false) {
-    // Compruebe si la suposición incorrecta ya está en la lista
+    // Check if inccorrect guess is already on the list
     if (guessedLetters.includes(letter) === false) {
-      // Agregar letra incorrecta a la lista de letras adivinadas
+      // Add incorrect letter to guessed letter list
       guessedLetters.push(letter)
-      // Disminuir el número de aciertos restantes
+      // Decrement the number of remaining guesses
       numGuess--
     }
-
     if (numGuess === 0) {
-      // Agregar palabra al arreglo usedGuessingWords para que no se repita
+      // Add word to usedGuessingWords array to not be repeated
       usedGuessingwWords.push(wordToMatch);
       console.log(usedGuessingwWords)
-      // Mostrar palabra antes de reiniciar el juego
+      // Display word before reseting game
       guessingWord = wordToMatch.split();
       pause = true;
       loseSound.play();
       setTimeout(resetGame, 4000);
     }
   }
-
   updateDisplay();
-
 };
 
-initializeGame();
+iniciarJuego();

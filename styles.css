@@ -1,0 +1,57 @@
+:root {
+    
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    margin: 0 auto;
+}
+
+body {
+    
+}
+
+.container {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 1.3em;
+    background: rgba(41, 30, 3, 0.8);
+    color: #f9e4b2;
+    height: 80vh;
+    width: 350px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+#currentWord {
+    letter-spacing: 5px;
+    color: #f9c0b1;
+}
+
+.info {
+    background: #f3f3f3;
+    color: #333;
+    padding: 20px;
+}
+
+.varColor {
+    color: #b1c6f9;
+}
+
+.noBlink {
+    visibility: hidden;
+}
+
+@keyframes blink{
+    0%{opacity: 0;}
+    50%{opacity: .5;}
+    100%{opacity: 1;}   
+}
