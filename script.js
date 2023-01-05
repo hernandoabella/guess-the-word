@@ -1,65 +1,7 @@
 var possibleWords = [
   "GRAND CANYON", 
   "ROCKY MOUNTAIN", 
-  "ZION", 
-  // "YELLOWSTONE",
-  // "YOSEMITE", 
-  // "GRAND TETON", 
-  // "GLACIER", 
-  // "ACADIA", 
-  // "MAMMOTH CAVE", 
-  // "OLYMPIC", 
-  // "GREAT SMOKY MOUNTAINS",
-  // "ARCHES",
-  // "BRYCE CANYON",
-  // "CARLSBAD CAVERNS",
-  // "CRATER LAKE",
-  // "DEATH VALLEY",
-  // "DENALI",
-  // "JOSHUA TREE",
-  // "CAPITOL REEF",
-  // "CANYON LANDS",
-  // "BADLANDS",
-  // "BIG BEND",
-  // "SEQUOIA",
-  // "BISCAYNE",
-  // "SHENANDOAH",
-  // "HOT SPRINGS",
-  // "MOUNT RANIER",
-  // "SAGUARO",
-  // "KINGS CANYON",
-  // "EVERGLADES",
-  // "MESA VERDE",
-  // "REDWOOD",
-  // "CHANNEL ISLANDS",
-  // "BLACK CANYON OF THE GUNNISON",
-  // "CONGAREE",
-  // "CUYAHOGA VALLEY",
-  // "DRY TORTUGAS",
-  // "GATEWAY ARCH",
-  // "GATES OF THE ARCTIC",
-  // "AMERICAN SAMOA",
-  // "GLACIER BAY",
-  // "GREAT BASIN",
-  // "GUADALUPE MOUNTAINS",
-  // "HAWAII VOLCANOES",
-  // "HOT SPRINGS",
-  // "INDIANA DUNES",
-  // "KATMAI",
-  // "KENAI FJORDS",
-  // "LASSEN VOLCANIC",
-  // "NORTH CASCADES",
-  // "PETRIFIED FOREST",
-  // "PINNACLES",
-  // "THEODORE ROOSEVELT",
-  // "VIRGIN ISLANDS",
-  // "VOYAGEURS",
-  // "WRANGELL ST ELIAS",
-  // "WIND CAVE",
-  // "KOBUK VALLEY",
-  // "LAKE CLARK",
-  // "ISLE ROYALE",
-  // "HALEAKALA"
+  "ZION"
 ];
 
 var guessedLetters = [];
@@ -115,7 +57,7 @@ function resetGame() {
   else {
     pause = false;
     // Restores blinking "...get started" message
-    document.getElementById('welcome').className = 'blink';
+    document.getElementById('bienvenida').className = 'blink';
     
     // Get a new word
     wordToMatch = possibleWords[Math.floor(Math.random() * possibleWords.length)].toUpperCase();
@@ -159,7 +101,7 @@ function resetGame() {
 // Update the Display
 function updateDisplay () {
   document.getElementById("totalWins").innerText = wins;
-  document.getElementById("currentWord").innerText = guessingWord.join("");
+  document.getElementById("palabraActual").innerText = guessingWord.join("");
   document.getElementById("remainingGuesses").innerText = numGuess;
   document.getElementById("guessedLetters").innerText =  guessedLetters.join(" ");
 };
@@ -171,7 +113,7 @@ document.onkeydown = function(event) {
   checkForLetter(event.key.toUpperCase());
   }
   // Turn off blinking "...get started" message on keypress
-  document.getElementById('welcome').className = 'noBlink';
+  document.getElementById('bienvenida').className = 'noBlink';
 };
 
 // Check if key pressed is between A-Z or a-z
