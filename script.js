@@ -86,7 +86,7 @@ function resetGame() {
 
     // Reset the guessed word
     for (var i=0; i < wordToMatch.length; i++){
-      // Put a space instead of an underscore between multi-word options in possibleWords array
+      // Coloque un espacio en lugar de un guión bajo entre las opciones de varias palabras en la matriz de possibleWords
       if (wordToMatch[i] === " ") {
         guessingWord.push(" ")
       } 
@@ -98,7 +98,7 @@ function resetGame() {
   }
 };
 
-// Update the Display
+// Actualizar la pantalla
 function updateDisplay () {
   document.getElementById("totalWins").innerText = wins;
   document.getElementById("palabraActual").innerText = guessingWord.join("");
@@ -106,36 +106,36 @@ function updateDisplay () {
   document.getElementById("guessedLetters").innerText =  guessedLetters.join(" ");
 };
 
-// Wait for key press
+// Espera a que se presione la tecla
 document.onkeydown = function(event) {
-  // Make sure key pressed is an alpha character
+  // Asegúrese de que la tecla presionada sea un carácter alfabético
   if (isLetter(event.key) && pause === false) {
   checkForLetter(event.key.toUpperCase());
   }
-  // Turn off blinking "...get started" message on keypress
+  // Desactivar el mensaje parpadeante "...comenzar" al presionar una tecla
   document.getElementById('bienvenida').className = 'noBlink';
 };
 
-// Check if key pressed is between A-Z or a-z
+// Compruebe si la tecla presionada está entre A-Z o a-z
 var isLetter = function(ch){
   return typeof ch === "string" && ch.length === 1
   && (ch >= "a" && ch <= "z" || ch >= "A" && ch <= "Z");
 };
 
-// Check if letter is in word
+// Comprobar si la letra está en word
 function checkForLetter(letter) {
   var foundLetter = false;
 
-  // Search string for letter
+  // Buscar string por letra
   for (var i=0; i < wordToMatch.length; i++) {
     if (letter === wordToMatch[i]) {
       guessingWord[i] = letter
       foundLetter = true
-      // If guessing word matches random word
+      // Si la palabra adivinada coincide con la palabra aleatoria
       if (guessingWord.join("") === wordToMatch) {
-        // Increment # of wins and add word to usedGuessingWords
+        // Incrementa el número de victorias y agregue la palabra a usedGuessingWords
         wins++
-        // Add word to usedGuessingWords array to not be repeated
+        // Agregar palabra al array usedGuessingWords para que no se repita
         usedGuessingwWords.push(wordToMatch)
         console.log(usedGuessingwWords)
         pause = true;
