@@ -18,7 +18,7 @@ var championSound = new Audio("./assets/sounds/crazysob.mp3");
 // Iniciar juego
 function iniciarJuego() {
 
-  // Get a new word
+  // Obtener una nueva palabra
   wordToMatch = possibleWords[Math.floor(Math.random() * possibleWords.length)].toUpperCase();
   // Set number of guesses (higher or lower) based on word length
   if (wordToMatch.length <= 4) {
@@ -146,18 +146,18 @@ function checkForLetter(letter) {
     }
   }
   if (foundLetter === false) {
-    // Check if inccorrect guess is already on the list
+    // Compruebe si la suposición incorrecta ya está en la lista
     if (guessedLetters.includes(letter) === false) {
-      // Add incorrect letter to guessed letter list
+      // Agregar letra incorrecta a la lista de letras adivinadas
       guessedLetters.push(letter)
-      // Decrement the number of remaining guesses
+      // Disminuir el número de suposiciones restantes
       numGuess--
     }
     if (numGuess === 0) {
-      // Add word to usedGuessingWords array to not be repeated
+      // Agregar palabra al array usedGuessingWords para que no se repita
       usedGuessingwWords.push(wordToMatch);
       console.log(usedGuessingwWords)
-      // Display word before reseting game
+      // Mostrar palabra antes de reiniciar el juego
       guessingWord = wordToMatch.split();
       pause = true;
       loseSound.play();
