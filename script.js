@@ -86,7 +86,7 @@ function resetGame() {
 
     // Reset the guessed word
     for (var i=0; i < wordToMatch.length; i++){
-      // Coloque un espacio en lugar de un guión bajo entre las opciones de varias palabras en la matriz de possibleWords
+      // Put a space instead of an underscore between multi-word options in possibleWords array
       if (wordToMatch[i] === " ") {
         guessingWord.push(" ")
       } 
@@ -98,7 +98,7 @@ function resetGame() {
   }
 };
 
-// Actualizar la pantalla
+// Update the Display
 function updateDisplay () {
   document.getElementById("totalWins").innerText = wins;
   document.getElementById("palabraActual").innerText = guessingWord.join("");
@@ -106,13 +106,13 @@ function updateDisplay () {
   document.getElementById("guessedLetters").innerText =  guessedLetters.join(" ");
 };
 
-// Espera a que se presione la tecla
+// Wait for key press
 document.onkeydown = function(event) {
-  // Asegúrese de que la tecla presionada sea un carácter alfabético
+  // Make sure key pressed is an alpha character
   if (isLetter(event.key) && pause === false) {
   checkForLetter(event.key.toUpperCase());
   }
-  // Desactivar el mensaje parpadeante "...comenzar" al presionar una tecla
+  // Turn off blinking "...get started" message on keypress
   document.getElementById('bienvenida').className = 'noBlink';
 };
 
