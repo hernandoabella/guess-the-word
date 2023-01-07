@@ -79,20 +79,23 @@ header {
 }
 
 .modo-oscuro {
-    background: #333;
-    transition: .3s;
+    background: #333 !important;
+    color: var(--verde-hacker) !important;
+}
+
+.modo-oscuro1 {
+    background: var(--verde-hacker) !important;
+    color: #333 !important;
 }
 
 .titulo h1 {
     text-align: center;
     font-size: .8em;
     font-family: var(--fuente-titulo);
-    color: var(--negro);
 }
 
 #palabraActual {
     letter-spacing: 5px;
-    color: var(--negro);
     text-align: center;
     font-size: 1.3em;
     font-family: var(--fuente-texto);
@@ -106,7 +109,6 @@ header {
 }
 
 .puntuacion > div {
-    color: var(--negro);
     font-family: var(--fuente-texto);
     font-weight: bold;
     letter-spacing: 1px;

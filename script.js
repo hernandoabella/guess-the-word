@@ -1,5 +1,14 @@
 function modoOscuro() {
+  
   document.getElementsByClassName('container')[0].classList.toggle('modo-oscuro');
+  document.getElementsByClassName('dark-mode-btn')[0].classList.toggle('modo-oscuro1');
+  document.querySelector('h1').classList.toggle('modo-oscuro');
+  document.getElementsByClassName('hamburger')[0].classList.toggle('modo-oscuro');
+  document.getElementsByClassName('active')[0].classList.toggle('modo-oscuro');
+  document.getElementById('palabraActual').classList.toggle('modo-oscuro');
+  for(let i = 0; i < 3; i++) {
+    document.getElementsByClassName('varColor')[i].classList.toggle('modo-oscuro');
+  }
 }
 
 const palabrasPosibles = [
