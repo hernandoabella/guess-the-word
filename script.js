@@ -46,6 +46,7 @@ function iniciarJuego() {
       palabraAdivinada.push("_");
     }
   }
+  
   updateDisplay();
 };
 
