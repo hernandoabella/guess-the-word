@@ -1,10 +1,11 @@
-# Adivina La Palabra (Charadas)
+# Adivina La Palabra 🔮(Charadas)
 
-Descripción
 
-[demo](https://hernandoabella.github.io/adivina-la-palabra/)
+
+[Demo](https://hernandoabella.github.io/adivina-la-palabra/)
 
 ## Características del proyecto
+- Modo oscuro (light / dark)
 - Genera una palabra aleatoria
 - Muestra las victorias
 - Muestra los intentos restantes
