@@ -1,16 +1,19 @@
 const palabrasPosibles = [
-  "GRAND CANYON", 
-  "ROCKY MOUNTAIN", 
-  "ZION"
+  "TIEMPO", 
+  "CAFE", 
+  "COMER",
+  "DESAYUNO",
+  "CENA",
+  "ESPACIO"
 ];
 
 let letrasAdivinadas = [];
 let palabraAdivinada = [];
-var usedGuessingwWords = [];
+let usedGuessingwWords = [];
 var wordToMatch;
 var numGuess;
-var wins = 0;
-var pause = false; // This var and setTimout function to not listen for keypress while game resets
+let victorias = 0;
+var pausa = false; // This var and setTimout function to not listen for keypress while game resets
 var loseSound = new Audio("./assets/sounds/ahahah.mp3");
 var winSound = new Audio("./assets/sounds/clever.wav");
 var championSound = new Audio("./assets/sounds/crazysob.mp3");
@@ -51,11 +54,11 @@ function resetGame() {
   if (usedGuessingwWords.length === palabrasPosibles.length) {
     championSound.play() // Toggle line comment on for almost the entire possibleWords array to hear this end of game sound clip
     usedGuessingwWords = []
-    wins = 0
+    victorias = 0
     setTimeout(resetGame, 6000); // Note for future change - shorten possibleWords, make jumbotron display congratulatory message upon guessing all possibilites
   }
   else {
-    pause = false;
+    pausa = false;
     // Restores blinking "...get started" message
     document.getElementById('bienvenida').className = 'blink';
     
@@ -98,9 +101,9 @@ function resetGame() {
   }
 };
 
-// Update the Display
+// Actualiza la pantalla
 function updateDisplay () {
-  document.getElementById("totalWins").innerText = wins;
+  document.getElementById("victoriasTotales").innerText = victorias;
   document.getElementById("palabraActual").innerText = palabraAdivinada.join("");
   document.getElementById("remainingGuesses").innerText = numGuess;
   document.getElementById("letrasAdivinadas").innerText =  letrasAdivinadas.join(" ");
@@ -109,7 +112,7 @@ function updateDisplay () {
 // Wait for key press
 document.onkeydown = function(event) {
   // Make sure key pressed is an alpha character
-  if (isLetter(event.key) && pause === false) {
+  if (isLetter(event.key) && pausa === false) {
   checkForLetter(event.key.toUpperCase());
   }
   // Turn off blinking "...get started" message on keypress
@@ -134,11 +137,11 @@ function checkForLetter(letter) {
       // Si la palabra adivinada coincide con la palabra aleatoria
       if (palabraAdivinada.join("") === wordToMatch) {
         // Incrementa el número de victorias y agregue la palabra a usedGuessingWords
-        wins++
+        victorias++
         // Agregar palabra al array usedGuessingWords para que no se repita
         usedGuessingwWords.push(wordToMatch)
         console.log(usedGuessingwWords)
-        pause = true;
+        pausa = true;
         winSound.play();
         updateDisplay();
         setTimeout(resetGame, 4000);
@@ -159,7 +162,7 @@ function checkForLetter(letter) {
       console.log(usedGuessingwWords)
       // Mostrar palabra antes de reiniciar el juego
       palabraAdivinada = wordToMatch.split();
-      pause = true;
+      pausa = true;
       loseSound.play();
       setTimeout(resetGame, 4000);
     }
