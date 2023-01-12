@@ -57,6 +57,8 @@ body {
     text-align: center;
 }
 
+/* header */
+
 header {
     padding: 15px;
     border-radius: 25px 25px 0px 0px;
@@ -94,6 +96,8 @@ header {
     font-family: var(--fuente-titulo);
 }
 
+/* header */
+
 #palabraActual {
     letter-spacing: 5px;
     text-align: center;
@@ -123,6 +127,16 @@ header {
     font-size: 1.3em;
 }
 
+.noBlink {
+    visibility: hidden;
+}
+
+.blink {
+    animation: blink 2s ease-in-out infinite;
+}
+
+/* footer */
+
 .bar-icons {
     display: flex;
     align-items: center;
@@ -141,14 +155,6 @@ header {
     color: var(--gris-oscuro);
 }
 
-.noBlink {
-    visibility: hidden;
-}
-
-.blink {
-    animation: blink 2s ease-in-out infinite;
-}
-
 footer {
     padding: 10px;
     position: absolute;
@@ -156,6 +162,8 @@ footer {
     width: 100%;
     border-radius: 0px 0px 25px 25px;
 }
+
+/* footer */
 
 @keyframes blink{
     0%{opacity: 0;}
