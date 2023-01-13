@@ -1,6 +1,4 @@
-# Adivina La Palabra 🔮(Charadas)
-
-
+# Adivina La Palabra 🔮
 
 [Demo](https://hernandoabella.github.io/adivina-la-palabra/)
 
